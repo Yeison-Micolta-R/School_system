@@ -54,6 +54,22 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+	 <dependency>
+	  <groupId>ch.exense.step</groupId>
+	  <artifactId>step-grid-agent</artifactId>
+	  <version>2.3.0</version>
+	  <type>jar</type>
+	 </dependency>
+	 <dependency>
+	  <groupId>org.postgresql</groupId>
+	  <artifactId>postgresql</artifactId>
+	  <version>42.7.7</version>
+	 </dependency>
+	 <dependency>
+	  <groupId>org.hibernate.validator</groupId>
+	  <artifactId>hibernate-validator</artifactId>
+	  <version>8.0.3.Final</version>
+	 </dependency>
 	</dependencies>
 
 	<build>
