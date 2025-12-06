@@ -1,5 +1,5 @@
 
-package com.miempresa.DTO;
+package com.School_System.app.DTO;
 
 /**
  *

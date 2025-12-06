@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.miempresa.Repository;
+package com.School_System.app.Repository;
 /**
  *
  * @author yesec
  */
-import com.miempresa.Model.Profesor;
+import com.School_System.app.Model.Profesor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,5 +19,5 @@ import org.springframework.data.domain.Pageable;
 public interface ProfesorRepository extends JpaRepository<Profesor, Long> {
     Optional<Profesor> findByNumeroIdentificacion(String numeroIdentificacion);
     boolean existsByCorreoInstitucional(String correoInstitucional);
-    Page<Profesor> findByActivoTrue(Pageable paginacion);
+    Page<Profesor> findByEstadoTrue(Pageable paginacion);
 }

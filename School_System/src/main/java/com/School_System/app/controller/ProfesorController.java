@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.miempresa.controller;
+package com.School_System.app.controller;
 
-import com.miempresa.DTO.*;
-import com.miempresa.Services.ServiceTeacher;
+import com.School_System.app.DTO.ProfesorRequest;
+import com.School_System.app.DTO.ProfesorResponse;
+import com.School_System.app.Services.ServiceTeacher;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

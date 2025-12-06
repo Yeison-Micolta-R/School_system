@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.miempresa.Model;
+package com.School_System.app.Model;
 
 /**
  *
@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "/profesor")
+@Table(name = "profesor")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -40,13 +40,17 @@ public class Profesor {
     private String correoInstitucional;
 
     @Builder.Default
-    private Boolean activo = true;
+    private Boolean estado = true;
 
-    // Relación con cursos
+    // Relaciónes con entidades
     @OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Curso> cursos = new HashSet<>();
-
+    
+    @OneToOne(mappedBy = "profesor", cascade = CascadeType.ALL)
+   private User usuario;
+    
+    
     public void desactivar() {
-        this.activo = false;
+        this.estado = false;
     }
 }

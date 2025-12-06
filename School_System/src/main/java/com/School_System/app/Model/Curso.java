@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.miempresa.Model;
+package com.School_System.app.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,7 +13,7 @@ import lombok.*;
  * @author yesec
  */
 @Entity
-@Table(name = "cursos")
+@Table(name = "curso")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,7 +27,7 @@ public class Curso {
     private String nombre;
 
     @ManyToOne
-    @JoinColumn(name = "profesor_id", nullable = false)
+    @JoinColumn(name = "id_profesor", nullable = false)
     private Profesor profesor;
     
 }

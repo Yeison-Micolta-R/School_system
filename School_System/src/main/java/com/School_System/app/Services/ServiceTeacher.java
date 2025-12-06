@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package com.miempresa.Services;
+package com.School_System.app.Services;
 
-import com.miempresa.DTO.ProfesorRequest;
-import com.miempresa.DTO.ProfesorResponse;
+import com.School_System.app.DTO.ProfesorRequest;
+import com.School_System.app.DTO.ProfesorResponse;
 import java.util.List;
 
 
