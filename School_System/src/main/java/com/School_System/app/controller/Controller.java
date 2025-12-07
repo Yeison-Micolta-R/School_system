@@ -28,7 +28,7 @@ public abstract class Controller<T, ID, Req extends Request<T>, Res extends Resp
     public Res create(@RequestBody Req request) {
         T entity = service.create(request);
         
-        return  service.createResponse(entity);  // <- sin @Override
+        return  service.createResponse(entity);  
         
     }
 
