@@ -42,7 +42,7 @@ public class User {
     //private Estudiante estudiante;
 
     @OneToOne
-    @JoinColumn(name = "id_profesor", nullable = true)
+    @JoinColumn(name = "id_teacher", nullable = true)
     private Profesor profesor;
     
 

@@ -20,6 +20,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
+
 public class Profesor {    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +38,7 @@ public class Profesor {
 
     private String telefono;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String correoInstitucional;
 
     @Builder.Default

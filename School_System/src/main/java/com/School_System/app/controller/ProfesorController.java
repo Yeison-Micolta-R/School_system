@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.*;
  * @author yesec
  */
 @RestController
-@RequestMapping("/profesor")
+//@RequestMapping("/profesor")
 @RequiredArgsConstructor
 public class ProfesorController {
-      private final ServiceTeacher profesorService;
+      /*private final ServiceTeacher profesorService;
 
     // Crear profesor
     @PostMapping
@@ -59,5 +59,5 @@ public class ProfesorController {
     public ResponseEntity<Void> desactivarProfesor(@PathVariable Long id) {
         profesorService.desactivarProfesor(id);
         return ResponseEntity.noContent().build();  // 204 No Content
-    }
+    }*/
 }

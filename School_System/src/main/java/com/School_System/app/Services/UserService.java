@@ -4,10 +4,17 @@
  */
 package com.School_System.app.Services;
 
+import com.School_System.app.DTO.*;
+import java.util.List;
+
 /**
  *
  * @author yesec
  */
 public interface UserService {
-    
+    UserResponse crearUser(UserRequest request);
+    List<UserResponse> listarUser();
+    UserResponse obtenerUser(Long id);
+    UserResponse actualizarUser(Long id, UserRequest request);
+    //void desactivarProfesor(Long id);
 }
