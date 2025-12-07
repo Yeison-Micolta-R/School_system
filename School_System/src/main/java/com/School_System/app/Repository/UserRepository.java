@@ -26,6 +26,7 @@ public interface UserRepository extends JpaRepository<User, Long>{
     Optional<User> findByProfesor(Profesor profesor);
     Optional<User> findByProfesorId(Long id_teacher);
     Page<User> findByEstadoTrue(Pageable paginacion);
+    List<User> findAllByEstadoTrue();
 
 
 }

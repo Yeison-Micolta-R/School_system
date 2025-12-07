@@ -44,7 +44,6 @@ public class TeacherServices extends Crud<Profesor, Long, TeacherDTO, TeacherDTO
         user.setProfesor(profesor);
 
         userRepository.save(user);
-    
         return profesor;
     }
 
