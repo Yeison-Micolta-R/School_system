@@ -4,43 +4,40 @@
  */
 package com.School_System.app.Conf;
 
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import java.io.IOException;
 import org.springframework.context.annotation.*;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author yesec
  */
-@Configuration
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Autowired
-    private GenericUserDetailsService userDetailsService; // Servicio de Spring Security
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+@Component
+public class SecurityConfig implements Filter {
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    public void doFilter(
+            ServletRequest request,
+            ServletResponse response,
+            FilterChain chain)
+            throws IOException, ServletException {
+            HttpServletRequest http =(HttpServletRequest) request;
+            HttpServletResponse httpRes=(HttpServletResponse) response;
+            String path = http.getRequestURI();
+            
+            if(path.startsWith("/auth/login")|| path.startsWith("error")){
+                chain.doFilter(request, response);
+                return;
+            }
+            HttpSession session = http.getSession(false);
+            if(session == null || session.getAttribute("user")== null){
+                httpRes.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                httpRes.getWriter().write("Session no valida o expirada");
+                return;
+            }
+            chain.doFilter(request, response);
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-            .authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
-                .anyRequest().authenticated()
-            .and()
-            .formLogin().disable()
-            .logout().disable();
-    }
-
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
 }

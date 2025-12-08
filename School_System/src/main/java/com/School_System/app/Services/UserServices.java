@@ -4,16 +4,19 @@
  */
 package com.School_System.app.Services;
 
-import com.School_System.app.DTO.TeacherDTO;
-import com.School_System.app.DTO.UserDTO;
-
-import com.School_System.app.Model.User;
-import com.School_System.app.Repository.UserRepository;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.School_System.app.DTO.LoginDTO;
+import com.School_System.app.DTO.UserDTO;
+import com.School_System.app.Model.User;
+import com.School_System.app.Repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -21,9 +24,10 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @RequiredArgsConstructor
-public class UserServices extends Crud<User, Long, UserDTO, UserDTO>{
+public class UserServices extends Crud<User, Long, UserDTO, UserDTO> {
+
     private final UserRepository userRepository;
- 
+
     @Override
     protected UserRepository getJpaRepository() {
         return userRepository;
@@ -50,6 +54,31 @@ public class UserServices extends Crud<User, Long, UserDTO, UserDTO>{
                 .orElseThrow(() -> new RuntimeException("User no encontrado"));
         user.setEstado(false);
         userRepository.save(user);
-     
+
     }
+
+    public UserDTO login(LoginDTO request) {
+         Optional<User> userOpt = userRepository.findByUsuario(request.getUsuario());
+
+        if (userOpt.isEmpty()) {
+            throw new RuntimeException("Usuario no encontrado");
+        }
+
+        User user = userOpt.get();
+
+        if (!user.getContrasena().equals(request.getContraseña())) {
+            throw new RuntimeException("Contraseña incorrecta");
+        }
+
+        if (!Boolean.TRUE.equals(user.getEstado())) {
+            throw new RuntimeException("Usuario inactivo");
+        }
+
+        // Convertimos a DTO
+        UserDTO dto = new UserDTO();
+        dto.fromEntity(user);
+
+        return dto;
+    }
+
 }

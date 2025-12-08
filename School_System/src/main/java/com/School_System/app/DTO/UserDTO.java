@@ -23,7 +23,6 @@ public class UserDTO implements Request<User>, Response<User> {
 
     private Long id;
     private String usuario;
-    private String contraseña;
     private String rol;
     private Boolean estado;
     private String id_teacher;
@@ -33,7 +32,6 @@ public class UserDTO implements Request<User>, Response<User> {
         return User.builder()
                 .id(id)
                 .usuario(usuario)
-                .contrasena(contraseña)
                 .estado(estado)
                 .rol(rol)
                 .build();
@@ -42,7 +40,6 @@ public class UserDTO implements Request<User>, Response<User> {
     @Override
     public void fromEntity(User entity) {
         this.id = entity.getId();
-        this.contraseña = entity.getContrasena();
         this.estado = entity.getEstado();
         this.rol = entity.getRol();
         this.usuario = entity.getUsuario();
@@ -55,9 +52,6 @@ public class UserDTO implements Request<User>, Response<User> {
     public void updateEntity(User user) {
         if (this.usuario != null) {
             user.setUsuario(this.usuario);
-        }
-        if (this.contraseña != null) {
-            user.setContrasena(this.contraseña);
         }
         if (this.estado != null) {
             user.setEstado(this.estado);
