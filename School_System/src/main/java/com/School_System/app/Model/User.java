@@ -5,6 +5,7 @@
 package com.School_System.app.Model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 import lombok.*;
 
 /**
@@ -44,6 +45,9 @@ public class User {
     @OneToOne
     @JoinColumn(name = "id_teacher", nullable = true)
     private Profesor profesor;
+    
+    private String codRecuperacion;
+    private LocalDateTime codRecuExpiracion;
     
 
     // Métodos auxiliares

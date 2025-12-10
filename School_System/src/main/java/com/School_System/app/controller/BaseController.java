@@ -28,6 +28,7 @@ public abstract class BaseController {
         UserDTO user = requireSession(session);
 
         for (String rol : rolesPermitidos) {
+          //  System.out.println("roles para esta accion -> "+ rol + " user-> " + user.getRol());
             if (user.getRol().equals(rol)) {
                 return;
             }

@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.School_System.app.DTO.TeacherDTO;
 import com.School_System.app.Model.Profesor;
-import com.School_System.app.Model.User;
+import com.School_System.app.Services.UserServices;
 import com.School_System.app.Repository.ProfesorRepository;
 import com.School_System.app.Repository.UserRepository;
 
@@ -25,6 +25,7 @@ public class TeacherServices extends Crud<Profesor, Long, TeacherDTO, TeacherDTO
 
     private final ProfesorRepository profesorRepository;
     private final UserRepository userRepository;
+     private final UserServices user;
     @Transactional
     @Override
     public Profesor create(TeacherDTO request) {
@@ -35,7 +36,7 @@ public class TeacherServices extends Crud<Profesor, Long, TeacherDTO, TeacherDTO
         // 2. Guardar profesor
         profesor = profesorRepository.save(profesor);
 
-        // 3. Crear usuario vinculado
+        /*// 3. Crear usuario vinculado
         User user = new User();
         user.setUsuario(profesor.getCorreoInstitucional());
         user.setContrasena(profesor.getNumeroIdentificacion());
@@ -43,7 +44,8 @@ public class TeacherServices extends Crud<Profesor, Long, TeacherDTO, TeacherDTO
         user.setEstado(true);
         user.setProfesor(profesor);
 
-        userRepository.save(user);
+        userRepository.save(user);*/
+       user.createUser(profesor, "Profesor");
         return profesor;
     }
 
@@ -65,7 +67,9 @@ public class TeacherServices extends Crud<Profesor, Long, TeacherDTO, TeacherDTO
                 .map(this::createResponse)
                 .collect(Collectors.toList());
     }
-
+   /*public Profesor update(Long id,  TeacherDTO request) {
+       actualizar cambos usuario
+    }*/
     @Transactional
     @Override
     public void desactivar(Long id) {

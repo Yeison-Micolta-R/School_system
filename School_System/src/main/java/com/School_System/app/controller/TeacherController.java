@@ -41,7 +41,7 @@ public class TeacherController extends Controller<Profesor, Long, TeacherDTO, Te
 
     @GetMapping
     public List<TeacherDTO> select(HttpSession session) {
-        requireRole(session, "Secretaria");
+        requireRole(session, "Secretaria","Profesor");
       //  requireRole(session, "Profesor");
 
         return super.select(session);
@@ -49,8 +49,8 @@ public class TeacherController extends Controller<Profesor, Long, TeacherDTO, Te
 
     @GetMapping("/{id}")
     public ResponseEntity<TeacherDTO> buscar(@PathVariable Long id, HttpSession session) {
-        requireRole(session, "Administrador");
-        requireRole(session, "Secretaria");
+        requireRole(session, "Administrador","Secretaria");
+     
        // requireRole(session, "Estudiante");
         return super.buscar(id, session);
 
@@ -58,9 +58,7 @@ public class TeacherController extends Controller<Profesor, Long, TeacherDTO, Te
 
     @PutMapping("/{id}")
     public ResponseEntity<TeacherDTO> update(@PathVariable Long id, @RequestBody TeacherDTO request, HttpSession session) {
-        requireRole(session, "Secretaria");
-        requireRole(session, "Profesor");
-        
+        requireRole(session, "Secretaria","Profesor");      
         return super.update(id, request, session);
 
     }

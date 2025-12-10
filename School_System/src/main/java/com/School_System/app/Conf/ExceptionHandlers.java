@@ -22,6 +22,20 @@ public class ExceptionHandlers {
                 .status(HttpStatus.UNAUTHORIZED)
                         .body(e.getMessage());
     }
+     /*@ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> handleUserNotFound(UserNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(InactiveUserException.class)
+    public ResponseEntity<String> handleInactiveUser(InactiveUserException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(WrongPasswordException.class)
+    public ResponseEntity<String> handleWrongPassword(WrongPasswordException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
+    }*/
 }
 
 

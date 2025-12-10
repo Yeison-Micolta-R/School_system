@@ -10,8 +10,10 @@ import lombok.Data;
  *
  * @author yesec
  */
-@Data
-public class LoginDTO {
+  @Data
+public class RecoverPassword {
     private String usuario;
     private String contrasena;
+
+
 }
