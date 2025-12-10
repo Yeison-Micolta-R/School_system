@@ -20,9 +20,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
-
 public class Profesor {    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,15 +43,15 @@ public class Profesor {
     @Builder.Default
     private Boolean estado = true;
 
-    // Relaciónes con entidades
-    @OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Curso> cursos = new HashSet<>();
-    
     @OneToOne(mappedBy = "profesor", cascade = CascadeType.ALL)
-   private User usuario;
-    
-    
-    public void desactivar() {
-        this.estado = false;
-    }
+    private User usuario;
+
+    // Si es director de curso (ONE TO ONE)
+    @OneToOne(mappedBy = "Director_curso")
+    private Curso cursoDirigido;
+
+    // Profesores que dictan clases (ManyToMany via Asignatura)
+    @OneToMany(mappedBy = "profesor")
+    private Set<Asignatura> asignaturas = new HashSet<>();
 }
+

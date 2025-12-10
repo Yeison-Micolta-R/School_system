@@ -5,10 +5,7 @@
 package com.School_System.app.Model;
 
 import jakarta.persistence.*;
-
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,30 +16,33 @@ import lombok.Setter;
  *
  * @author yesec
  */
+
 @Entity
-@Table(name = "estudiante")
+@Table(name = "nota")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Estudiante extends PersonaBase {
+public class Nota {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Información extra de estudiantes
     @Column(nullable = false)
-    private Date fechaIngreso;
+    private String periodo;
 
-    @Column(nullable = false)
-    private Date fechaMatricula;
+    @NotNull
+    @DecimalMin(value = "0.0")
+    @DecimalMax(value = "5.0")
+    private Double calificacion;
 
     @ManyToOne
-    @JoinColumn(name = "curso_id", nullable = false)
-    private Curso curso;
+    @JoinColumn(name = "estudiante_id", nullable = false)
+    private Estudiante estudiante;
 
-    @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL)
-    private Set<Nota> notas = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "asignatura_id", nullable = false)
+    private Asignatura asignatura;
 }
