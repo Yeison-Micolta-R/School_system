@@ -42,7 +42,7 @@ public class TeacherController extends Controller<Profesor, Long, TeacherDTO, Te
     @GetMapping
     public List<TeacherDTO> select(HttpSession session) {
         requireRole(session, "Secretaria","Profesor");
-      //  requireRole(session, "Profesor");
+      
 
         return super.select(session);
     }

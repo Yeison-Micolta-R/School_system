@@ -28,6 +28,7 @@ public abstract class Controller<T, ID, Req extends Request<T>, Res extends Resp
     @PostMapping
     public Res create(@RequestBody Req request, HttpSession session) {
         requireSession(session);
+        System.out.println("request-> "+ request);
         T entity = service.create(request);
         
         return  service.createResponse(entity);  
