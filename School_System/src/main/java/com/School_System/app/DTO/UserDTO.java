@@ -4,8 +4,8 @@
  */
 package com.School_System.app.DTO;
 
-import com.School_System.app.Model.Profesor;
-import com.School_System.app.Model.*;
+import com.School_System.app.Model.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,36 +25,32 @@ public class UserDTO implements Request<User>, Response<User> {
     private String usuario;
     private String rol;
     private Boolean estado;
-    private String id_teacher;
+    private Long profesorId; 
 
     @Override
     public User toEntity() {
         return User.builder()
                 .id(id)
                 .usuario(usuario)
-                .estado(estado)
                 .rol(rol)
+                .estado(estado != null ? estado : true)
                 .build();
     }
 
     @Override
     public void fromEntity(User entity) {
         this.id = entity.getId();
-        this.estado = entity.getEstado();
-        this.rol = entity.getRol();
         this.usuario = entity.getUsuario();
+        this.rol = entity.getRol();
         this.estado = entity.getEstado();
-        this.id_teacher = entity.getProfesor() != null ? entity.getProfesor().getId().toString() : null;
-
+        this.profesorId = entity.getProfesor() != null ? entity.getProfesor().getId() : null;
     }
 
     @Override
     public void updateEntity(User user) {
-        if (this.usuario != null) {
-            user.setUsuario(this.usuario);
-        }
-        if (this.estado != null) {
-            user.setEstado(this.estado);
-        }
+        if (usuario != null) user.setUsuario(usuario);
+        if (rol != null) user.setRol(rol);
+        if (estado != null) user.setEstado(estado);
     }
 }
+

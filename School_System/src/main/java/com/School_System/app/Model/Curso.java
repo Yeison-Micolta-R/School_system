@@ -20,6 +20,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Curso {
 
     @Id
@@ -35,7 +36,7 @@ public class Curso {
     // DIRECTOR DEL CURSO (solo uno)
     @OneToOne
     @JoinColumn(name = "director_grado", nullable = false)
-    private Profesor profesorDirector;
+    private Profesor Director_curso;
 
     @OneToOne
     @JoinColumn(name = "nivel_academico", nullable = false)

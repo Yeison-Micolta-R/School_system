@@ -2,6 +2,7 @@ package com.School_System.app.DTO;
 
 import com.School_System.app.Model.Estudiante;
 import java.time.LocalDate;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +20,7 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
     private String apellidosCompletos;
     private String tipoDocumentoIdentidad;
     private String numeroDocumentoIdentidad;
-    private LocalDate fechaNacimiento;
+    private Date fechaNacimiento;
     private String generoSexo;
     private String nacionalidad;
     private String direccionResidencia;
@@ -38,35 +39,34 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
    
 
     // Campos específicos de Estudiante
-    private LocalDate fechaIngreso;
-    private LocalDate fechaMatricula;
+    private Date fechaIngreso;
+    private Date fechaMatricula;
     private Long cursoId; // ID del curso al que pertenece el estudiante
-    private String notas; // Notas adicionales sobre el estudiante
   
     @Override
     public Estudiante toEntity() {
-        Estudiante estudiante = Estudiante.builder()
+        Estudiante estudiante = Estudiante.builder()   
         .nombreCompleto(this.nombreCompleto)
         .apellidosCompletos(this.apellidosCompletos)
-         .tipoDocumentoIdentidad(this.tipoDocumentoIdentidad)
-        .numeroDocumentoIdentidad(this.numeroDocumentoIdentidad)
-        .fechaNacimiento(java.sql.Date.valueOf(this.fechaNacimiento)) 
+        .tipoDocumentoIdentidad(this.tipoDocumentoIdentidad)
+        .nDocIden(this.numeroDocumentoIdentidad)
+        .fechaNacimiento(this.fechaNacimiento) 
         .generoSexo(this.generoSexo)
         .nacionalidad(this.nacionalidad)
         .direccionResidencia(this.direccionResidencia)
         .ciudadResidencia(this.ciudadResidencia)
-        .correoElectronico(this.correoElectronico)
+        .correoElectronico(this.correoElectronico) 
         .telefonoCelular(this.telefonoCelular)
         .telefonoSecundario(this.telefonoSecundario)
         .contactoEmergenciaNombre(this.contactoEmergenciaNombre)
         .contactoEmergenciaParentesco(this.contactoEmergenciaParentesco)
         .contactoEmergenciaTelefono(this.contactoEmergenciaTelefono)
-        .contactoEmergenciaCorreo(this.contactoEmergenciaCorreo)
-        .condicionesEspeciales(this.condicionesEspeciales)  
+        .condicionesMedicasRelevantes(condicionesEspeciales) 
         .tipoSangre(this.tipoSangre)
         .estado(this.estado)
-        .fechaIngreso(java.sql.Date.valueOf(this.fechaIngreso))
-        .fechaMatricula(java.sql.Date.valueOf(this.fechaMatricula))
+         
+        .fechaIngreso((this.fechaIngreso))
+        .fechaMatricula((this.fechaMatricula))
         .build(); 
             
         return estudiante;
@@ -78,8 +78,8 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
         this.nombreCompleto = entity.getNombreCompleto();
         this.apellidosCompletos = entity.getApellidosCompletos();
         this.tipoDocumentoIdentidad = entity.getTipoDocumentoIdentidad();
-        this.numeroDocumentoIdentidad = entity.getNumeroDocumentoIdentidad();
-        this.fechaNacimiento = entity.getFechaNacimiento().toLocalDate();
+        this.numeroDocumentoIdentidad = entity.getNDocIden();
+        this.fechaNacimiento = entity.getFechaNacimiento();
         this.generoSexo = entity.getGeneroSexo();
         this.nacionalidad = entity.getNacionalidad();
         this.direccionResidencia =  entity.getDireccionResidencia();
@@ -92,8 +92,8 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
         this.contactoEmergenciaTelefono = entity.getContactoEmergenciaTelefono();
         this.tipoSangre = entity.getTipoSangre();
         this.estado = entity.getEstado();
-        this.fechaIngreso = entity.getFechaIngreso().toLocalDate();
-        this.fechaMatricula = entity.getFechaMatricula().toLocalDate();
+        this.fechaIngreso = entity.getFechaIngreso();
+        this.fechaMatricula = entity.getFechaMatricula();
         if (entity.getCurso() != null) {
             this.cursoId =  entity.getCurso().getId();
         }
@@ -112,7 +112,7 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
             estudiante.setTipoDocumentoIdentidad(this.tipoDocumentoIdentidad);
         }
         if (this.numeroDocumentoIdentidad != null) {
-            estudiante.setNumeroDocumentoIdentidad(this.numeroDocumentoIdentidad);
+            estudiante.setNDocIden(this.numeroDocumentoIdentidad);
         }
         if (this.fechaNacimiento != null) {
             estudiante.setFechaNacimiento(this.fechaNacimiento);
@@ -156,14 +156,13 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
             estudiante.setEstado(this.estado);
         }
         if (this.fechaIngreso != null) {
-            estudiante.setFechaIngreso(java.sql.Date.valueOf(this.fechaIngreso));
+            estudiante.setFechaIngreso((this.fechaIngreso));
         }
         if (this.fechaMatricula != null) {
-            estudiante.setFechaMatricula(java.sql.Date.valueOf(this.fechaMatricula));
+            estudiante.setFechaMatricula((this.fechaMatricula));
         }
     
      
-        // El curso dirigido debe manejarse aparte en el service
     }
 
 }

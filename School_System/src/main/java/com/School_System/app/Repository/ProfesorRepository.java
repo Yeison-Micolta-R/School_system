@@ -21,6 +21,7 @@ import com.School_System.app.Model.Profesor;
 public interface ProfesorRepository extends JpaRepository<Profesor, Long> {
     Optional<Profesor> findByNumeroIdentificacion(String numeroIdentificacion);
     boolean existsByCorreoInstitucional(String correoInstitucional);
-    Page<Profesor> findByEstadoTrue(Pageable paginacion);
+   // 
     List<Profesor> findAllByEstadoTrue();
+    Page<Profesor> findByEstadoTrue(Pageable paginacion);
 }

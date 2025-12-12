@@ -6,7 +6,9 @@ package com.School_System.app.Model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
@@ -17,6 +19,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@SuperBuilder
 public abstract class PersonaBase {
 
     @Column(nullable = false, length = 150)
@@ -29,10 +32,10 @@ public abstract class PersonaBase {
     private String tipoDocumentoIdentidad;
 
     @Column(nullable = false, unique = true, length = 50)
-    private String numeroDocumentoIdentidad;
+    private String nDocIden;
 
     @Column(nullable = false)
-    private LocalDate fechaNacimiento;
+    private Date fechaNacimiento;
 
     @Column(nullable = false, length = 20)
     private String generoSexo;
@@ -73,8 +76,8 @@ public abstract class PersonaBase {
    /* @Column(nullable = false, length = 30)
     private String rolInstitucional;
 */
-    @Column(nullable = false, length = 30)
-    private Boolean estado;
+    @Builder.Default
+    private Boolean estado = true;
 
 }
 

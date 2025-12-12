@@ -38,7 +38,7 @@ public class User {
     @Builder.Default
     private Boolean estado = true;
     // Relación con Estudiante
-   // @ManyToOne
+   // @OneToOne
    // @JoinColumn(name = "id_estudiante",nullable = true)
     //private Estudiante estudiante;
 

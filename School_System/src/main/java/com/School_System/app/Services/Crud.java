@@ -46,7 +46,7 @@ public abstract class Crud<T, ID, Req extends Request<T>, Res extends Response<T
             .orElseThrow(() -> new RuntimeException("Registro no encontrado"));
 
         // Actualizar solo los campos que vienen en el DTO
-        request.updateEntity(entity); // <- este método debe existir en tu DTO
+        request.updateEntity(entity);
        
         return getJpaRepository().save(entity);
     }

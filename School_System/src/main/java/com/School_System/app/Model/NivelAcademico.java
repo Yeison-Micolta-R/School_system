@@ -4,10 +4,26 @@
  */
 package com.School_System.app.Model;
 
+import jakarta.persistence.*;
+import lombok.*;
+
 /**
  *
  * @author yesec
  */
-class NivelAcademico {
-    
+@Entity
+@Table(name = "nivel_academico")
+@Data  
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class NivelAcademico {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nombre;
+
+   
 }

@@ -7,8 +7,6 @@ package com.School_System.app.Repository;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -22,11 +20,13 @@ import com.School_System.app.Model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
    Optional<User> findByUsuario(String usuario);
-    List<User> findByRol(String rol);
+   boolean existsByUsuario(String usuario);
+
+   // List<User> findByRol(String rol);
     Optional<User> findByProfesor(Profesor profesor);
-    Optional<User> findByProfesorId(Long id_teacher);
-    Page<User> findByEstadoTrue(Pageable paginacion);
-    List<User> findAllByEstadoTrue();
+  Optional<User> findByProfesorId(Long id_teacher);
+   // Page<User> findByEstadoTrue(Pageable paginacion);
+   List<User> findAllByEstadoTrue();
 
 
 }
