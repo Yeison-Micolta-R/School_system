@@ -4,13 +4,15 @@
  */
 package com.School_System.app.DTO;
 
-import lombok.Data;
+import lombok.*;
 
 /**
  *
  * @author yesec
  */
   @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class RecoverPassword {
     private String usuario;
     private String contrasena;

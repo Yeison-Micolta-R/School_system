@@ -11,8 +11,7 @@ package com.School_System.app.DTO;
 
 import java.time.LocalDate; 
 import lombok.*;
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class PersonaDTO<T> implements Request<T>, Response<T> {

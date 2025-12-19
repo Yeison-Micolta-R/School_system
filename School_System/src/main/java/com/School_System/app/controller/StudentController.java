@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
  *
  * @author yesec
  */
+@RestController
+@RequestMapping("/estudiante")
 public class StudentController extends Controller<Estudiante, Long, EstudianteDTO, EstudianteDTO> {
    public StudentController(StudentService service) {
         super(service);

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
  * @author yesec
  */
 //@PreAuthorize("hasRole('Administrador')")
+@RestController
+@RequestMapping("/nivelac")
 public class NivelAcademicoController extends Controller<NivelAcademico, Long, NivelAcademicoDTO, NivelAcademicoDTO> {
    public NivelAcademicoController(NivelAcademicoService service) {
         super(service);

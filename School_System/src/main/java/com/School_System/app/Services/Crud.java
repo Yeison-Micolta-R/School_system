@@ -28,6 +28,9 @@ public abstract class Crud<T, ID, Req extends Request<T>, Res extends Response<T
 
     @Override
     public List<Res> select() {
+        System.out.println("coursoo->   " + getJpaRepository().findAll().stream()
+                .map(this::createResponse)
+                .collect(Collectors.toList()));
         return getJpaRepository().findAll().stream()
                 .map(this::createResponse)
                 .collect(Collectors.toList());

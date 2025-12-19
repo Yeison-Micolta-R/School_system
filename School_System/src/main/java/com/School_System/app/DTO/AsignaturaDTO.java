@@ -5,13 +5,19 @@
 package com.School_System.app.DTO;
 
 import com.School_System.app.Model.Asignatura;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author yesec
  */
+@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AsignaturaDTO implements Request<Asignatura>, Response<Asignatura> {
 
     private Long id;

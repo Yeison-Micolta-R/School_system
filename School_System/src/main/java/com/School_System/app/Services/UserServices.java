@@ -94,9 +94,9 @@ public class UserServices extends Crud<User, Long, UserDTO, UserDTO> {
 
         User user = userOpt.get();
 
-        boolean ismactchpassword = passwordEncoder.matches(request.getContrasena(), user.getContrasena());
-        //if (!user.getContrasena().equals(request.getContrasena())) {
-        if (!ismactchpassword) {
+        //boolean ismactchpassword = passwordEncoder.matches(request.getContrasena(), user.getContrasena());
+        if (!user.getContrasena().equals(request.getContrasena())) {
+        //if (!ismactchpassword) {
             throw new RuntimeException("Contraseña incorrecta");
         }
 

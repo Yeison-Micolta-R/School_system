@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.*;
 /**
  *
  * @author yesec
+ * @RestController
  */
+@RestController
+ @RequestMapping("/nota")
 public class NotaController extends Controller<Nota, Long, NotaDTO, NotaDTO> {
    public NotaController(NotaService service) {
         super(service);

@@ -5,12 +5,20 @@
 package com.School_System.app.DTO;
 
 import com.School_System.app.Model.Curso;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
  * @author yesec
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class CursoDTO implements Request<Curso>, Response<Curso> {
 

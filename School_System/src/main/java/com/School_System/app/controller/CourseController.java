@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
  *
  * @author yesec
  */
+@RestController
+@RequestMapping("/curso")
 public class CourseController extends Controller<Curso, Long, CursoDTO, CursoDTO> {
    public CourseController(CourseService service) {
         super(service);
