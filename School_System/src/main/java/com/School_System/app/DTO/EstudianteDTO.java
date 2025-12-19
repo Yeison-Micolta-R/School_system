@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> {
      // Campos heredados de PersonaBase
     private Long id;
@@ -55,7 +57,7 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
         .nacionalidad(this.nacionalidad)
         .direccionResidencia(this.direccionResidencia)
         .ciudadResidencia(this.ciudadResidencia)
-        .correoElectronico(this.correoElectronico) 
+        .correoInstitucional(this.correoElectronico) 
         .telefonoCelular(this.telefonoCelular)
         .telefonoSecundario(this.telefonoSecundario)
         .contactoEmergenciaNombre(this.contactoEmergenciaNombre)
@@ -84,7 +86,7 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
         this.nacionalidad = entity.getNacionalidad();
         this.direccionResidencia =  entity.getDireccionResidencia();
         this.ciudadResidencia = entity.getCiudadResidencia();
-        this.correoElectronico = entity.getCorreoElectronico();
+        this.correoElectronico = entity.getCorreoInstitucional();
         this.telefonoCelular = entity.getTelefonoCelular();
         this.telefonoSecundario = entity.getTelefonoSecundario();
         this.contactoEmergenciaNombre = entity.getContactoEmergenciaNombre();
@@ -130,7 +132,7 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
             estudiante.setCiudadResidencia(this.ciudadResidencia);
         }
         if (this.correoElectronico != null) {
-            estudiante.setCorreoElectronico(this.correoElectronico);
+            estudiante.setCorreoInstitucional(this.correoElectronico);
         }
         if (this.telefonoCelular != null) {
             estudiante.setTelefonoCelular(this.telefonoCelular);

@@ -47,10 +47,12 @@ public class Profesor {
     private User usuario;
 
     // Si es director de curso (ONE TO ONE)
-    @OneToOne(mappedBy = "Director_curso")
+    @OneToOne(mappedBy = "Profesorid")
     private Curso cursoDirigido;
 
     // Profesores que dictan clases (ManyToMany via Asignatura)
+     @Builder.Default
+
     @OneToMany(mappedBy = "profesor")
     private Set<Asignatura> asignaturas = new HashSet<>();
 }

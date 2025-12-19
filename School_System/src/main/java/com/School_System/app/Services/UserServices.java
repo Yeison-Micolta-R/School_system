@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.School_System.app.DTO.LoginDTO;
 import com.School_System.app.DTO.RecoverPassword;
 import com.School_System.app.DTO.UserDTO;
+import com.School_System.app.Model.Estudiante;
 import com.School_System.app.Model.Profesor;
 import com.School_System.app.Model.User;
 import com.School_System.app.Repository.UserRepository;
@@ -48,7 +49,7 @@ public class UserServices extends Crud<User, Long, UserDTO, UserDTO> {
         return dto;
     }
 
-    public void createUser(Profesor profesor, String rol) {
+    public void createUser(Profesor profesor, Estudiante estudiante, String rol) {
         // 3. Crear usuario vinculado
         User user = new User();
         user.setUsuario(profesor.getCorreoInstitucional());
@@ -56,7 +57,13 @@ public class UserServices extends Crud<User, Long, UserDTO, UserDTO> {
         user.setContrasena(encrypted);
         user.setRol(rol);
         user.setEstado(true);
-        user.setProfesor(profesor);
+        if (profesor != null) {
+            user.setProfesor(profesor);
+
+        }
+        if(estudiante != null){
+            user.setEstudiante (estudiante);
+        }
 
         userRepository.save(user);
     }
@@ -87,9 +94,9 @@ public class UserServices extends Crud<User, Long, UserDTO, UserDTO> {
 
         User user = userOpt.get();
 
-        boolean ismactchpassword = passwordEncoder.matches(request.getContrasena(),user.getContrasena());
+        boolean ismactchpassword = passwordEncoder.matches(request.getContrasena(), user.getContrasena());
         //if (!user.getContrasena().equals(request.getContrasena())) {
-        if(!ismactchpassword){
+        if (!ismactchpassword) {
             throw new RuntimeException("Contraseña incorrecta");
         }
 
@@ -106,14 +113,13 @@ public class UserServices extends Crud<User, Long, UserDTO, UserDTO> {
 
     public UserDTO recoverPassword(RecoverPassword request) {
         Optional<User> userOpt = userRepository.findByUsuario(request.getUsuario());
-      
 
         if (userOpt.isEmpty()) {
-           throw new RuntimeException("Usuario no encontrado");
+            throw new RuntimeException("Usuario no encontrado");
         }
-         User user = userOpt.get();
+        User user = userOpt.get();
         if (!Boolean.TRUE.equals(user.getEstado())) {
-             throw new RuntimeException("Usuario inactivo");
+            throw new RuntimeException("Usuario inactivo");
         }
         UserDTO dto = new UserDTO();
         dto.fromEntity(user);

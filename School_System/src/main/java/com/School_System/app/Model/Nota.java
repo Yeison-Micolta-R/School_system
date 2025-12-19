@@ -4,8 +4,20 @@
  */
 package com.School_System.app.Model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -40,9 +52,13 @@ public class Nota {
 
     @ManyToOne
     @JoinColumn(name = "estudiante_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+
     private Estudiante estudiante;
 
     @ManyToOne
     @JoinColumn(name = "asignatura_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+
     private Asignatura asignatura;
 }

@@ -5,11 +5,13 @@
 package com.School_System.app.DTO;
 
 import com.School_System.app.Model.Asignatura;
+import lombok.Builder;
 
 /**
  *
  * @author yesec
  */
+@Builder
 public class AsignaturaDTO implements Request<Asignatura>, Response<Asignatura> {
 
     private Long id;

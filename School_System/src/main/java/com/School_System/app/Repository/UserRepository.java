@@ -4,6 +4,7 @@
  */
 package com.School_System.app.Repository;
 
+import com.School_System.app.Model.Estudiante;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,15 +19,20 @@ import com.School_System.app.Model.User;
  * @author yesec
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
-   Optional<User> findByUsuario(String usuario);
-   boolean existsByUsuario(String usuario);
+public interface UserRepository extends JpaRepository<User, Long> {
 
-   // List<User> findByRol(String rol);
+    Optional<User> findByUsuario(String usuario);
+
+    boolean existsByUsuario(String usuario);
+
+    // List<User> findByRol(String rol);
     Optional<User> findByProfesor(Profesor profesor);
-  Optional<User> findByProfesorId(Long id_teacher);
-   // Page<User> findByEstadoTrue(Pageable paginacion);
-   List<User> findAllByEstadoTrue();
 
+    Optional<User> findByEstudiante(Estudiante estudiante);
+
+    Optional<User> findByProfesorId(Long id_teacher);
+    // Page<User> findByEstadoTrue(Pageable paginacion);
+
+    List<User> findAllByEstadoTrue();
 
 }

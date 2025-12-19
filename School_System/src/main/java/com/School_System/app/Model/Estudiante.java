@@ -45,6 +45,12 @@ public class Estudiante extends PersonaBase {
     @JoinColumn(name = "curso_id", nullable = false)
     private Curso curso;
 
+    @OneToOne(mappedBy = "estudiante", cascade = CascadeType.ALL)
+    private User usuario;
+
     @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL)
+     @Builder.Default
+
     private Set<Nota> notas = new HashSet<>();
+
 }

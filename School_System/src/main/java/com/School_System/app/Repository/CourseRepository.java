@@ -22,7 +22,8 @@ public interface CourseRepository extends JpaRepository<Curso, Long> {
     Optional<Curso> findByNombre(String nombre);
 
     // Buscar cursos por director
-    List<Curso> findByDirectorId(Long profesorId);
+    List<Curso> findByProfesoridId(Long profesorId);
+  
 
     // Cursos por jornada
     List<Curso> findByJornada(String jornada);

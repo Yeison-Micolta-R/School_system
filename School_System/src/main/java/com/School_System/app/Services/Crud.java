@@ -55,6 +55,6 @@ public abstract class Crud<T, ID, Req extends Request<T>, Res extends Response<T
     public void desactivar(ID id) {
         T entity = getJpaRepository().findById(id)
                 .orElseThrow(() -> new RuntimeException("Registro no encontrado"));
- 
+        
     }
 }

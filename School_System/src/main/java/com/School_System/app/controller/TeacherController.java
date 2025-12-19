@@ -33,6 +33,7 @@ public class TeacherController extends Controller<Profesor, Long, TeacherDTO, Te
     }
 
     @PostMapping
+    @Override
     public TeacherDTO create(@RequestBody TeacherDTO request, HttpSession session) {
         requireRole(session, "Secretaria");
         return super.create(request, session);
@@ -40,6 +41,7 @@ public class TeacherController extends Controller<Profesor, Long, TeacherDTO, Te
     }
 
     @GetMapping
+    @Override
     public List<TeacherDTO> select(HttpSession session) {
         requireRole(session, "Secretaria","Profesor");
       
@@ -48,6 +50,7 @@ public class TeacherController extends Controller<Profesor, Long, TeacherDTO, Te
     }
 
     @GetMapping("/{id}")
+    @Override
     public ResponseEntity<TeacherDTO> buscar(@PathVariable Long id, HttpSession session) {
         requireRole(session, "Administrador","Secretaria");
      
@@ -57,6 +60,7 @@ public class TeacherController extends Controller<Profesor, Long, TeacherDTO, Te
     }
 
     @PutMapping("/{id}")
+    @Override
     public ResponseEntity<TeacherDTO> update(@PathVariable Long id, @RequestBody TeacherDTO request, HttpSession session) {
         requireRole(session, "Secretaria","Profesor");      
         return super.update(id, request, session);
@@ -64,6 +68,7 @@ public class TeacherController extends Controller<Profesor, Long, TeacherDTO, Te
     }
 
     @DeleteMapping("/{id}")
+    @Override
     public ResponseEntity<Void> desactivar(@PathVariable Long id, HttpSession session) {
         requireRole(session, "Secretaria");
         return super.desactivar(id, session);

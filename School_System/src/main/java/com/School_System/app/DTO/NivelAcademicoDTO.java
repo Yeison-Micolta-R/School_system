@@ -5,11 +5,13 @@
 package com.School_System.app.DTO;
 
 import com.School_System.app.Model.NivelAcademico;
+import lombok.Builder;
 
 /**
  *
  * @author yesec
  */
+@Builder
 public class NivelAcademicoDTO implements Request<NivelAcademico>, Response<NivelAcademico> {
     private Long id;
     private String nombre;

@@ -20,42 +20,40 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class User {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(nullable = false, length = 100)
     private String usuario;
-    
+
     @Column(nullable = false, length = 100)
     private String contrasena;
 
     @Column(length = 20)
     private String rol; // Puede ser ESTUDIANTE, PROFESOR o ADMIN
 
-  
     @Builder.Default
     private Boolean estado = true;
     // Relación con Estudiante
-   // @OneToOne
-   // @JoinColumn(name = "id_estudiante",nullable = true)
+    // @OneToOne
+    // @JoinColumn(name = "id_estudiante",nullable = true)
     //private Estudiante estudiante;
 
     @OneToOne
     @JoinColumn(name = "id_teacher", nullable = true)
     private Profesor profesor;
-    
+
+    @OneToOne
+    @JoinColumn(name = "id_student", nullable = true)
+    private Estudiante estudiante;
+
     private String codRecuperacion;
     private LocalDateTime codRecuExpiracion;
-    
 
     // Métodos auxiliares
     public void desactivar() {
         this.estado = false;
     }
 }
-
-
-
-

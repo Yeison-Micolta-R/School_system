@@ -30,5 +30,6 @@ public interface StudentRepository extends JpaRepository<Estudiante, Long> {
 
     // Estudiantes por curso
     List<Estudiante> findByCursoId(Long cursoId);
+    
   
 }

@@ -45,7 +45,7 @@ public class TeacherServices extends Crud<Profesor, Long, TeacherDTO, TeacherDTO
         user.setProfesor(profesor);
 
         userRepository.save(user);*/
-       user.createUser(profesor, "Profesor");
+       user.createUser(profesor,null, "Profesor");
         return profesor;
     }
 

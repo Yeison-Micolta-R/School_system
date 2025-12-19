@@ -5,11 +5,13 @@
 package com.School_System.app.DTO;
 
 import com.School_System.app.Model.Curso;
+import lombok.Builder;
 
 /**
  *
  * @author yesec
  */
+@Builder
 public class CursoDTO implements Request<Curso>, Response<Curso> {
 
     private Long id;
@@ -37,7 +39,7 @@ public class CursoDTO implements Request<Curso>, Response<Curso> {
         this.id = entity.getId();
         this.nombre = entity.getNombre();
         this.jornada = entity.getJornada();
-        this.Director_curso = entity.getDirector_curso() != null ? entity.getDirector_curso().getId() : null;
+        this.Director_curso = entity.getProfesorid()!= null ? entity.getProfesorid().getId() : null;
         this.nivelAcademico = entity.getNivelAcademico() != null ? entity.getNivelAcademico().getId() : null;
 
     }

@@ -5,11 +5,13 @@
 package com.School_System.app.DTO;
 
 import com.School_System.app.Model.Nota;
+import lombok.Builder;
 
 /**
  *
  * @author yesec
  */
+@Builder
 public class NotaDTO implements Request<Nota>, Response<Nota> {
 
     private Long id;

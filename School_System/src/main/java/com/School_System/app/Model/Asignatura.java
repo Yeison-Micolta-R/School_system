@@ -43,6 +43,8 @@ public class Asignatura {
     @ManyToOne
     @JoinColumn(name = "profesor_id", nullable = false)
     private Profesor profesor;
+    
+     @Builder.Default
 
     @OneToMany(mappedBy = "asignatura", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Nota> notas = new HashSet<>();

@@ -50,7 +50,7 @@ public abstract class PersonaBase {
     private String ciudadResidencia;
 
     @Column(nullable = false, length = 100)
-    private String correoElectronico;
+    private String correoInstitucional;
 
     @Column(nullable = false, length = 20)
     private String telefonoCelular;
