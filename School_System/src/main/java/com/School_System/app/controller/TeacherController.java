@@ -43,7 +43,7 @@ public class TeacherController extends Controller<Profesor, Long, TeacherDTO, Te
     @GetMapping
     @Override
     public List<TeacherDTO> select(HttpSession session) {
-        requireRole(session, "Secretaria","Profesor","Administrador");
+        requireRole(session, "Secretaria","Administrador");
       
 
         return super.select(session);

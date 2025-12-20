@@ -1,15 +1,14 @@
 package com.School_System.app.DTO;
 
-import com.School_System.app.Model.Estudiante;
-import java.time.LocalDate;
 import java.util.Date;
+
+import com.School_System.app.Model.Curso;
+import com.School_System.app.Model.Estudiante;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @NoArgsConstructor
@@ -21,13 +20,13 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
     private String nombreCompleto;
     private String apellidosCompletos;
     private String tipoDocumentoIdentidad;
-    private String numeroDocumentoIdentidad;
+    private String nDocIden;
     private Date fechaNacimiento;
     private String generoSexo;
     private String nacionalidad;
     private String direccionResidencia;
     private String ciudadResidencia;
-    private String correoElectronico;
+    private String correoInstitucional;
     private String telefonoCelular;
     private String telefonoSecundario;
     private String contactoEmergenciaNombre;
@@ -51,13 +50,13 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
         .nombreCompleto(this.nombreCompleto)
         .apellidosCompletos(this.apellidosCompletos)
         .tipoDocumentoIdentidad(this.tipoDocumentoIdentidad)
-        .nDocIden(this.numeroDocumentoIdentidad)
+        .nDocIden(this.nDocIden)
         .fechaNacimiento(this.fechaNacimiento) 
         .generoSexo(this.generoSexo)
         .nacionalidad(this.nacionalidad)
         .direccionResidencia(this.direccionResidencia)
         .ciudadResidencia(this.ciudadResidencia)
-        .correoInstitucional(this.correoElectronico) 
+        .correoInstitucional(this.correoInstitucional) 
         .telefonoCelular(this.telefonoCelular)
         .telefonoSecundario(this.telefonoSecundario)
         .contactoEmergenciaNombre(this.contactoEmergenciaNombre)
@@ -70,6 +69,15 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
         .fechaIngreso((this.fechaIngreso))
         .fechaMatricula((this.fechaMatricula))
         .build(); 
+         // Aquí conviertes cursoId en un objeto Curso
+          
+    if (this.cursoId != null) {
+        Curso curso = new Curso();
+        curso.setId(this.cursoId);
+        estudiante.setCurso(curso);
+    }
+
+
             
         return estudiante;
     }
@@ -80,13 +88,13 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
         this.nombreCompleto = entity.getNombreCompleto();
         this.apellidosCompletos = entity.getApellidosCompletos();
         this.tipoDocumentoIdentidad = entity.getTipoDocumentoIdentidad();
-        this.numeroDocumentoIdentidad = entity.getNDocIden();
+        this.nDocIden = entity.getNDocIden();
         this.fechaNacimiento = entity.getFechaNacimiento();
         this.generoSexo = entity.getGeneroSexo();
         this.nacionalidad = entity.getNacionalidad();
         this.direccionResidencia =  entity.getDireccionResidencia();
         this.ciudadResidencia = entity.getCiudadResidencia();
-        this.correoElectronico = entity.getCorreoInstitucional();
+        this.correoInstitucional = entity.getCorreoInstitucional();
         this.telefonoCelular = entity.getTelefonoCelular();
         this.telefonoSecundario = entity.getTelefonoSecundario();
         this.contactoEmergenciaNombre = entity.getContactoEmergenciaNombre();
@@ -113,8 +121,8 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
         if (this.tipoDocumentoIdentidad != null) {
             estudiante.setTipoDocumentoIdentidad(this.tipoDocumentoIdentidad);
         }
-        if (this.numeroDocumentoIdentidad != null) {
-            estudiante.setNDocIden(this.numeroDocumentoIdentidad);
+        if (this.nDocIden != null) {
+            estudiante.setNDocIden(this.nDocIden);
         }
         if (this.fechaNacimiento != null) {
             estudiante.setFechaNacimiento(this.fechaNacimiento);
@@ -131,8 +139,8 @@ public class EstudianteDTO implements Request<Estudiante>, Response<Estudiante> 
         if (this.ciudadResidencia != null) {
             estudiante.setCiudadResidencia(this.ciudadResidencia);
         }
-        if (this.correoElectronico != null) {
-            estudiante.setCorreoInstitucional(this.correoElectronico);
+        if (this.correoInstitucional != null) {
+            estudiante.setCorreoInstitucional(this.correoInstitucional);
         }
         if (this.telefonoCelular != null) {
             estudiante.setTelefonoCelular(this.telefonoCelular);

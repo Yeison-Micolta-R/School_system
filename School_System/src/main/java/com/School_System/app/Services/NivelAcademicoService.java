@@ -31,8 +31,9 @@ public class NivelAcademicoService extends Crud<NivelAcademico, Long, NivelAcade
     @Override
     public NivelAcademicoDTO createResponse(NivelAcademico entity) {
         NivelAcademicoDTO dto = NivelAcademicoDTO.builder().build();
+        dto.fromEntity(entity);
         return dto;
 
     }
-
+ 
 }

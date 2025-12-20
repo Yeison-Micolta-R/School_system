@@ -31,10 +31,10 @@ public class StudentService extends Crud<Estudiante, Long, EstudianteDTO, Estudi
     @Override
     public Estudiante create(EstudianteDTO request) {
 
-        // 1. Convertir DTO a entidad
+       
         Estudiante estudiante = request.toEntity();
 
-        // 2. Guardar profesor
+        
         estudiante = studentRepository.save(estudiante);
 
         user.createUser(null,estudiante,"Estudiante");

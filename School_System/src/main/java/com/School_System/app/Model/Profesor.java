@@ -52,7 +52,6 @@ public class Profesor {
 
     // Profesores que dictan clases (ManyToMany via Asignatura)
      @Builder.Default
-
     @OneToMany(mappedBy = "profesor")
     private Set<Asignatura> asignaturas = new HashSet<>();
 }

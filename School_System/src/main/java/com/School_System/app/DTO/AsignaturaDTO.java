@@ -5,6 +5,9 @@
 package com.School_System.app.DTO;
 
 import com.School_System.app.Model.Asignatura;
+import com.School_System.app.Model.Curso;
+import com.School_System.app.Model.Profesor;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,26 +27,42 @@ public class AsignaturaDTO implements Request<Asignatura>, Response<Asignatura> 
 
     private String nombre;
 
-    private String curso;
+    private Long cursoId;
 
-    private String profesor;
+    private Long profesorId;
 
 
 
     @Override
     public Asignatura toEntity() {
-        return Asignatura.builder()
+           Asignatura asignatura = Asignatura.builder()
                 .id(id)
                 .nombre(nombre)
                 .build();
+
+        if (this.cursoId != null) {
+            Curso curso = new Curso();
+            curso.setId(this.cursoId);
+            asignatura.setCurso(curso);
+        }
+
+        if (this.profesorId != null) {
+            Profesor profesor = new Profesor();
+            profesor.setId(this.profesorId);
+            asignatura.setProfesor(profesor);
+        }
+
+        return asignatura;
     }
+
+
 
     @Override
     public void fromEntity(Asignatura entity) {
         this.id = entity.getId();
         this.nombre = entity.getNombre();
-        this.curso = entity.getCurso() != null ? entity.getCurso().getId().toString() : null;
-        this.profesor = entity.getProfesor() != null ? entity.getProfesor().getId().toString() : null;
+        this.cursoId = entity.getCurso() != null ? entity.getCurso().getId() : null;
+        this.profesorId = entity.getProfesor() != null ? entity.getProfesor().getId() : null;
     }
 
     @Override

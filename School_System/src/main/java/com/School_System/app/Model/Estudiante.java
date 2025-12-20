@@ -50,7 +50,6 @@ public class Estudiante extends PersonaBase {
 
     @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL)
      @Builder.Default
-
     private Set<Nota> notas = new HashSet<>();
 
 }

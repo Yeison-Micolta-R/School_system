@@ -5,6 +5,8 @@
 package com.School_System.app.Model;
 
 import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.*;
 
 /**
@@ -24,6 +26,10 @@ public class NivelAcademico {
     private Long id;
 
     private String nombre;
+    
+     @Builder.Default
+    @OneToMany(mappedBy = "nivelAcademico")
+    private Set<Curso> Curso = new HashSet<>();
 
    
 }

@@ -52,18 +52,23 @@ public class UserServices extends Crud<User, Long, UserDTO, UserDTO> {
     public void createUser(Profesor profesor, Estudiante estudiante, String rol) {
         // 3. Crear usuario vinculado
         User user = new User();
-        user.setUsuario(profesor.getCorreoInstitucional());
-        String encrypted = passwordEncoder.encode(profesor.getNumeroIdentificacion());
+
+        String encrypted = null;
+        if (profesor != null) {
+            user.setProfesor(profesor);
+            user.setUsuario(profesor.getCorreoInstitucional());
+            encrypted = passwordEncoder.encode(profesor.getNumeroIdentificacion());
+
+        }
+        if (estudiante != null) {
+            user.setEstudiante(estudiante);
+            user.setUsuario(estudiante.getCorreoInstitucional());
+            encrypted = passwordEncoder.encode(estudiante.getNDocIden());
+
+        }
         user.setContrasena(encrypted);
         user.setRol(rol);
         user.setEstado(true);
-        if (profesor != null) {
-            user.setProfesor(profesor);
-
-        }
-        if(estudiante != null){
-            user.setEstudiante (estudiante);
-        }
 
         userRepository.save(user);
     }
@@ -94,9 +99,9 @@ public class UserServices extends Crud<User, Long, UserDTO, UserDTO> {
 
         User user = userOpt.get();
 
-        //boolean ismactchpassword = passwordEncoder.matches(request.getContrasena(), user.getContrasena());
-        if (!user.getContrasena().equals(request.getContrasena())) {
-        //if (!ismactchpassword) {
+        boolean ismactchpassword = passwordEncoder.matches(request.getContrasena(), user.getContrasena());
+        //if (!user.getContrasena().equals(request.getContrasena())) {
+        if (!ismactchpassword) {
             throw new RuntimeException("Contraseña incorrecta");
         }
 

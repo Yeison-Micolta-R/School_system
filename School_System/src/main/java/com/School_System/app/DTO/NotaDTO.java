@@ -4,6 +4,8 @@
  */
 package com.School_System.app.DTO;
 
+import com.School_System.app.Model.Asignatura;
+import com.School_System.app.Model.Estudiante;
 import com.School_System.app.Model.Nota;
 import lombok.*;
 
@@ -25,11 +27,23 @@ public class NotaDTO implements Request<Nota>, Response<Nota> {
 
     @Override
     public Nota toEntity() {
-        return Nota.builder()
+        Nota nota = Nota.builder()
                 .id(id)
                 .periodo(periodo)
                 .calificacion(calificacion)
                 .build();
+        
+        if(this.asignatura_id != null){
+            Asignatura asignatura = new Asignatura();
+            asignatura.setId(this.asignatura_id);
+            nota.setAsignatura(asignatura);
+        }
+          if(this.estudiante_id != null){
+            Estudiante estudiante = new Estudiante();
+            estudiante.setId(this.estudiante_id);
+            nota.setEstudiante(estudiante);
+        }
+        return nota;
     }
 
     @Override
