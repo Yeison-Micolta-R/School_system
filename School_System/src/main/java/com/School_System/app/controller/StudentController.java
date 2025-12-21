@@ -25,7 +25,7 @@ public class StudentController extends Controller<Estudiante, Long, EstudianteDT
     @PostMapping
    @Override
     public EstudianteDTO create(@RequestBody EstudianteDTO request, HttpSession session) {
-        requireRole(session, "Secretaria");
+     requireRole(session, "Secretaria");
         return super.create(request, session);
 
     }
@@ -42,7 +42,7 @@ public class StudentController extends Controller<Estudiante, Long, EstudianteDT
     @GetMapping("/{id}")
    @Override
     public ResponseEntity<EstudianteDTO> buscar(@PathVariable Long id, HttpSession session) {
-        requireRole(session, "Administrador","Secretaria","Profesor");
+       requireRole(session, "Administrador","Secretaria","Profesor");
      
        
         return super.buscar(id, session);

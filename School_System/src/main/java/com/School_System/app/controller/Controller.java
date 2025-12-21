@@ -27,7 +27,7 @@ public abstract class Controller<T, ID, Req extends Request<T>, Res extends Resp
 
     @PostMapping
     public Res create(@RequestBody Req request, HttpSession session) {
-        requireSession(session);
+      requireSession(session);
         System.out.println("request-> "+ request);
         T entity = service.create(request);
         
@@ -37,7 +37,7 @@ public abstract class Controller<T, ID, Req extends Request<T>, Res extends Resp
 
     @GetMapping
     public List<Res> select( HttpSession session) {
-          requireSession(session);
+         requireSession(session);
         return service.select();
     }
 
@@ -54,7 +54,7 @@ public abstract class Controller<T, ID, Req extends Request<T>, Res extends Resp
 
     @PutMapping("/{id}")
     public ResponseEntity<Res> update(@PathVariable ID id, @RequestBody Req request, HttpSession session) {
-          requireSession(session);
+         requireSession(session);
           
         try {
             T updated = service.update(id, request);
@@ -66,7 +66,7 @@ public abstract class Controller<T, ID, Req extends Request<T>, Res extends Resp
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> desactivar(@PathVariable ID id, HttpSession session) {
-        requireSession(session);
+      requireSession(session);
         try {
             service.desactivar(id);
             return ResponseEntity.noContent().build();
