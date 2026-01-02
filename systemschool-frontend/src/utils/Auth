@@ -1,0 +1,8 @@
+
+
+export const logout = () => {
+    localStorage.clear();
+    console.log("Cerrando sesión y redirigiendo al login...");
+    // .replace() borra el historial para que no pueda volver atrás
+    window.location.replace("/login"); 
+};
